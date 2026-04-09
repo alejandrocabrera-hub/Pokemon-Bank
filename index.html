@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Bank</title>
+
+    <!-- Fuente bonita -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="JS/login.js"></script>
+</head>
+<body>
+
+    <div class="formulario">
+        <h1>Inicio de sesión</h1>
+
+        <form>
+            <div class="input-group">
+                <input type="text" required>
+                <label>Nombre de usuario</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label>Contraseña</label>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <div class="recordar">¿Olvidó su contraseña?</div>
+
+            <input type="submit" value="Iniciar sesión">
+
+            <div class="registrarse">
+                Quiero hacer el <a href="#">registro</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById("password");
+            input.type = input.type === "password" ? "text" : "password";
+        }
+    </script>
+
+</body>
+</html>
