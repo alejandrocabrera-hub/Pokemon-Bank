@@ -6,7 +6,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Evita scrolls innecesarios por el blur */
+    overflow: hidden;
+    /* Evita scrolls innecesarios por el blur */
     position: relative;
 }
 
@@ -14,27 +15,30 @@ body {
 body::before {
     content: "";
     position: absolute;
-    top: 0; 
+    top: 0;
     left: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
     background: url(IMG/pokebola.png);
     background-size: cover;
     background-position: center;
-    filter: blur(8px); /* Ajusta qué tan borroso quieres el fondo */
-    z-index: -1; /* Lo manda detrás de todo */
-    transform: scale(1.1); /* Evita bordes blancos por el desenfoque */
+    filter: blur(8px);
+    /* Ajusta qué tan borroso quieres el fondo */
+    z-index: -1;
+    /* Lo manda detrás de todo */
+    transform: scale(1.1);
+    /* Evita bordes blancos por el desenfoque */
 }
 
 .formulario {
     width: 350px;
     padding: 30px;
     /* RECOMENDACIÓN: Un blanco más denso para resaltar sobre el rojo/blanco de la pokebola */
-    background: rgba(255, 255, 255, 0.85); 
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -42,7 +46,8 @@ body::before {
     text-align: center;
     margin-bottom: 25px;
     font-weight: 600;
-    color: #333; /* Texto oscuro para legibilidad */
+    color: #333;
+    /* Texto oscuro para legibilidad */
 }
 
 .input-group {
@@ -52,13 +57,16 @@ body::before {
 
 .input-group input {
     width: 100%;
-    padding: 12px; /* Un poco más de espacio */
-    border: 2px solid #eee; /* Borde más definido */
+    padding: 12px;
+    /* Un poco más de espacio */
+    border: 2px solid #eee;
+    /* Borde más definido */
     border-radius: 8px;
     background: white;
     outline: none;
     color: #333;
-    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+    box-sizing: border-box;
+    /* Asegura que el padding no rompa el ancho */
 }
 
 .input-group label {
@@ -73,11 +81,12 @@ body::before {
 }
 
 /* Color de acento inspirado en la Master Ball o el logo clásico */
-.input-group input:focus + label,
-.input-group input:valid + label {
+.input-group input:focus+label,
+.input-group input:valid+label {
     top: -10px;
     font-size: 12px;
-    color: #ff1c1c; /* Rojo Pokémon */
+    color: #ff1c1c;
+    /* Rojo Pokémon */
     background: white;
     padding: 0 4px;
 }
@@ -91,7 +100,8 @@ input[type="submit"] {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: #ff1c1c; /* Rojo para que combine con la Pokebola */
+    background: #ff1c1c;
+    /* Rojo para que combine con la Pokebola */
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -110,4 +120,734 @@ input[type="submit"]:hover {
     color: #ff1c1c;
     font-weight: 600;
     text-decoration: none;
+}
+
+/* ========== ESTILOS DASHBOARD ========== */
+
+.dashboard-body {
+    background: url(IMG/pokebola.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.dashboard-body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: -1;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.95) 100%);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Header del Dashboard */
+.dashboard-header {
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #ff1c1c 0%, #cc1515 100%);
+    color: white;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 15px rgba(255, 28, 28, 0.3);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-name {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.account-number {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.95;
+}
+
+/* Main Content del Dashboard */
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Botones de Acción */
+.action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 25px 20px;
+    border: none;
+    border-radius: 15px;
+    background: white;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    min-height: 140px;
+    width: 100%;
+}
+
+.action-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.action-button:active {
+    transform: translateY(-2px);
+}
+
+/* Colores específicos para cada botón */
+.action-button.depositar {
+    color: #00a86b;
+    border-color: #00a86b;
+}
+
+.action-button.depositar:hover {
+    background: rgba(0, 168, 107, 0.1);
+    border-color: #00a86b;
+}
+
+.action-button.retirar {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+.action-button.retirar:hover {
+    background: rgba(255, 107, 107, 0.1);
+    border-color: #ff6b6b;
+}
+
+.action-button.consultar {
+    color: #4169e1;
+    border-color: #4169e1;
+}
+
+.action-button.consultar:hover {
+    background: rgba(65, 105, 225, 0.1);
+    border-color: #4169e1;
+}
+
+.action-button.servicios {
+    color: #ffa500;
+    border-color: #ffa500;
+}
+
+.action-button.servicios:hover {
+    background: rgba(255, 165, 0, 0.1);
+    border-color: #ffa500;
+}
+
+.action-icon {
+    width: 50px;
+    height: 50px;
+    stroke: currentColor;
+    flex-shrink: 0;
+}
+
+.button-label {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.2;
+    word-wrap: break-word;
+    max-width: 120px;
+}
+
+/* Footer del Dashboard */
+.dashboard-footer {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+/* Botón Logout */
+.logout-button {
+    padding: 12px 40px;
+    border: none;
+    border-radius: 8px;
+    background: #ff1c1c;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 28, 28, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.logout-button:hover {
+    background: #d11212;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 28, 28, 0.4);
+}
+
+.logout-button:active {
+    transform: translateY(0);
+}
+
+/* Estilos para el botón submit del formulario de login */
+input[type="submit"],
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ff1c1c;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 28, 28, 0.3);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+}
+
+input[type="submit"]:hover,
+.submit-btn:hover {
+    background: #d11212;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 28, 28, 0.4);
+}
+
+input[type="submit"]:active,
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .dashboard-header {
+        padding: 25px 15px;
+    }
+
+    .user-name {
+        font-size: 24px;
+    }
+
+    .account-number {
+        font-size: 14px;
+    }
+
+    .dashboard-main {
+        padding: 30px 15px;
+    }
+
+    .actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        max-width: 100%;
+    }
+
+    .action-button {
+        padding: 20px 15px;
+        gap: 10px;
+        min-height: 120px;
+    }
+
+    .action-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .button-label {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-name {
+        font-size: 20px;
+    }
+
+    .account-number {
+        font-size: 12px;
+    }
+
+    .actions-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .action-button {
+        padding: 20px 15px;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .action-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .button-label {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .logout-button {
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+}
+
+/* --- ESTILOS DE MODALES (INTEGRANTE 3) --- */
+
+.modal-overlay {
+    display: none;
+    /* Se activa con JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.service-modal {
+    max-width: 500px;
+}
+
+.service-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group select,
+.form-group input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    border-color: #ff1c1c;
+}
+
+.btn-confirmar.pay {
+    background: linear-gradient(135deg, #ff1c1c 0%, #cc1515 100%);
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 12px;
+}
+
+/* Estilos para modal de consulta de saldo */
+.balance-display {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.balance-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.balance-amount {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ff1c1c;
+    margin: 15px 0;
+    text-shadow: 0 2px 4px rgba(255, 28, 28, 0.3);
+}
+
+.account-info {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.btn-confirmar.balance {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    margin-top: 0;
+    width: 150px;
+    margin: 0 auto;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+}
+
+.pokeball-divider {
+    height: 5px;
+    background: linear-gradient(90deg, #ff1c1c 50%, #333 50%);
+    margin: 15px 0 25px 0;
+    border-radius: 5px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-confirmar.dep {
+    background: #00a86b;
+}
+
+.btn-confirmar.ret {
+    background: #ff6b6b;
+}
+
+.btn-confirmar:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* --- ADICIONES INTEGRANTE 3 (Modales y SweetAlert Custom) --- */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 380px;
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #999;
+}
+
+.pokeball-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #ff1c1c 50%, #333 50%);
+    margin: 15px 0;
+    border-radius: 2px;
+}
+
+.modal-input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-confirmar.dep {
+    background: #28a745;
+}
+
+.btn-confirmar.ret {
+    background: #dc3545;
+}
+
+.btn-confirmar:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* Responsive para pagos de servicios */
+@media (max-width: 768px) {
+    .service-modal {
+        max-width: 90%;
+    }
+
+    .service-form {
+        gap: 12px;
+    }
+
+    .form-group select,
+    .form-group input {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+/* --- ESTILOS MÓDULO HISTORIAL INTEGRANTE 4 --- */
+
+.action-button.historial {
+    color: #9b59b6;
+    border-color: #9b59b6;
+}
+
+.action-button.historial:hover {
+    background: rgba(155, 89, 182, 0.1);
+    border-color: #9b59b6;
+}
+
+.action-button.grafica {
+    color: #1abc9c;
+    border-color: #1abc9c;
+}
+
+.action-button.grafica:hover {
+    background: rgba(26, 188, 156, 0.1);
+    border-color: #1abc9c;
+}
+
+.historial-main {
+    flex: 1;
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tabla-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.tabla-transacciones {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.tabla-transacciones thead {
+    background: #ff1c1c;
+    color: white;
+}
+
+.tabla-transacciones th,
+.tabla-transacciones td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tabla-transacciones tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-transacciones tbody tr:hover {
+    background-color: #fff9f9;
+}
+
+.badge-tipo {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.badge-deposito {
+    background: #e6f9f0;
+    color: #00a86b;
+    border: 1px solid #00a86b33;
+}
+
+.badge-retiro {
+    background: #feebeb;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b33;
+}
+
+.badge-pago {
+    background: #fff4e5;
+    color: #ffa500;
+    border: 1px solid #ffa50033;
+}
+
+.monto-valor {
+    font-weight: 700;
+    color: #333;
+}
+
+.historial-acciones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.btn-reporte {
+    background: #333 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-reporte:hover {
+    background: #000 !important;
+}
+
+@media (max-width: 600px) {
+    .tabla-transacciones thead {
+        display: none;
+    }
+
+    .tabla-transacciones tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        padding: 10px;
+        background: white;
+    }
+
+    .tabla-transacciones td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border: none;
+        text-align: right;
+    }
+
+    .tabla-transacciones td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #888;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
 }
