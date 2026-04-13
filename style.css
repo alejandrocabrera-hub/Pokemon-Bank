@@ -10,6 +10,7 @@ body {
     position: relative;
 }
 
+
 body::before {
     content: "";
     position: absolute;
@@ -51,7 +52,7 @@ body::before {
 .input-group input {
     width: 100%;
     padding: 12px;
-    padding-right: 50px;
+    padding-right: 50px; 
     border: 2px solid #eee;
     border-radius: 8px;
     background: white;
@@ -113,7 +114,7 @@ body::before {
     text-decoration: underline;
 }
 
-input[type="submit"] {
+#loginForm input[type="submit"] {
     width: 100%;
     padding: 14px;
     border: none;
@@ -128,7 +129,7 @@ input[type="submit"] {
     box-shadow: 0 4px 15px rgba(255, 28, 28, 0.3);
 }
 
-input[type="submit"]:hover {
+#loginForm input[type="submit"]:hover {
     background: #d11212;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 28, 28, 0.4);
@@ -149,4 +150,158 @@ input[type="submit"]:hover {
 
 .registrarse a:hover {
     text-decoration: underline;
+}
+
+.dashboard-body {
+    background: url(IMG/pokebola.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: block;
+    overflow: auto;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.95) 100%);
+}
+
+.dashboard-header {
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #ff1c1c 0%, #cc1515 100%);
+    color: white;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+}
+
+.user-name { margin: 0; font-size: 28px; font-weight: 700; }
+.account-number { margin: 0; font-size: 16px; opacity: 0.95; }
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 25px 20px;
+    border-radius: 15px;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    min-height: 140px;
+}
+
+.action-button.depositar { color: #00a86b; border-color: #00a86b; }
+.action-button.retirar { color: #ff6b6b; border-color: #ff6b6b; }
+.action-button.consultar { color: #4169e1; border-color: #4169e1; }
+.action-button.servicios { color: #ffa500; border-color: #ffa500; }
+
+.logout-button {
+    padding: 12px 40px;
+    border-radius: 8px;
+    background: #ff1c1c;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+}
+
+.pokeball-divider {
+    height: 5px;
+    background: linear-gradient(90deg, #ff1c1c 50%, #333 50%);
+    margin: 15px 0 25px 0;
+    border-radius: 5px;
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-confirmar.dep { background: #00a86b; }
+.btn-confirmar.ret { background: #ff6b6b; }
+
+
+.tabla-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.tabla-transacciones {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-transacciones thead {
+    background: #ff1c1c;
+    color: white;
+}
+
+.tabla-transacciones th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.badge-tipo {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.badge-deposito { background: #e6f9f0; color: #00a86b; }
+.badge-retiro { background: #feebeb; color: #ff6b6b; }
+
+
+@media (max-width: 768px) {
+    .actions-grid { grid-template-columns: repeat(2, 1fr); padding: 10px; }
+}
+
+@media (max-width: 480px) {
+    .actions-grid { grid-template-columns: 1fr; }
+    .formulario { width: 90%; }
 }

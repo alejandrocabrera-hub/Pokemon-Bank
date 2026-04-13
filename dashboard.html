@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Bank - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="user-info">
+                <h1 class="user-name">Juan Pokemon</h1>
+                <p class="account-number">Cuenta: 1234-5678-9012</p>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="actions-grid">
+                <button class="action-button depositar" onclick="abrirDeposito()">
+                    <svg class="action-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M 50 25 L 50 65 M 35 50 L 50 65 L 65 50" stroke="currentColor" stroke-width="3" fill="none"/>
+                    </svg>
+                    <span class="button-label">Depositar</span>
+                </button>
+
+                <button class="action-button retirar" onclick="abrirRetiro()">
+                    <svg class="action-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M 50 75 L 50 35 M 35 50 L 50 35 L 65 50" stroke="currentColor" stroke-width="3" fill="none"/>
+                    </svg>
+                    <span class="button-label">Retirar</span>
+                </button>
+
+                <button class="action-button consultar" onclick="consultarSaldo()">
+                    <svg class="action-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <rect x="35" y="35" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M 45 45 L 50 50 L 55 45" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <circle cx="50" cy="40" r="2" fill="currentColor"/>
+                    </svg>
+                    <span class="button-label">Ver Saldo</span>
+                </button>
+
+                <button class="action-button servicios" onclick="handlePayServices()">
+                    <svg class="action-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <rect x="30" y="35" width="40" height="25" fill="none" stroke="currentColor" stroke-width="3" rx="3"/>
+                        <path d="M 35 45 L 45 55 L 65 35" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <circle cx="50" cy="50" r="1.5" fill="currentColor"/>
+                    </svg>
+                    <span class="button-label">Pagar Servicios</span>
+                </button>
+
+                <button class="action-button historial" onclick="window.location.href='historial.html'">
+                    <svg class="action-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M 50 30 V 50 H 70" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 30 50 A 20 20 0 1 1 50 70" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="2,2"/>
+                    </svg>
+                    <span class="button-label">Historial</span>
+                </button>
+
+                <button class="action-button grafica" onclick="swal('Próximamente', 'El módulo de gráficas estadísticas estará disponible muy pronto.', 'info')">
+                    <svg class="action-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M 30 70 V 50 M 50 70 V 30 M 70 70 V 45" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    </svg>
+                    <span class="button-label">Gráfica</span>
+                </button>
+            </div>
+        </main>
+
+        <div id="modalDeposito" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-btn" onclick="cerrarModal('modalDeposito')">&times;</span>
+                <h2>Depositar Fondos</h2>
+                <div class="pokeball-divider"></div>
+                <div class="modal-body">
+                    <p>Ingrese la cantidad a abonar a su cuenta:</p>
+                    <input type="number" id="inputDeposito" placeholder="$0.00" class="modal-input">
+                    <button class="btn-confirmar dep" onclick="ejecutarDeposito()">Confirmar Depósito</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalRetiro" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-btn" onclick="cerrarModal('modalRetiro')">&times;</span>
+                <h2>Retirar Efectivo</h2>
+                <div class="pokeball-divider"></div>
+                <div class="modal-body">
+                    <p>¿Cuánto desea retirar?</p>
+                    <input type="number" id="inputRetiro" placeholder="$0.00" class="modal-input">
+                    <button class="btn-confirmar ret" onclick="ejecutarRetiro()">Confirmar Retiro</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalServicios" class="modal-overlay">
+            <div class="modal-content service-modal">
+                <span class="close-btn" onclick="cerrarModal('modalServicios')">&times;</span>
+                <h2>Pagar Servicios Públicos</h2>
+                <div class="pokeball-divider"></div>
+                <div class="modal-body">
+                    <div class="service-form">
+                        <div class="form-group">
+                            <label for="serviceType">Tipo de Servicio:</label>
+                            <select id="serviceType" onchange="updateCompanies()" required>
+                                <option value="">Seleccione un servicio</option>
+                                <option value="agua">Agua</option>
+                                <option value="electricidad">Electricidad</option>
+                                <option value="telefonia">Telefonía</option>
+                                <option value="internet">Internet</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Empresa:</label>
+                            <select id="company" required disabled>
+                                <option value="">Seleccione una empresa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accountNumber">Número de Cuenta/Referencia:</label>
+                            <input type="text" id="accountNumber" placeholder="Ingrese el número de cuenta" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Monto a Pagar ($):</label>
+                            <input type="number" id="amount" placeholder="0.00" step="0.01" min="0.01" required>
+                        </div>
+
+                        <button class="btn-confirmar pay" onclick="simulatePayment()">Simular Pago</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalSaldo" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-btn" onclick="cerrarModal('modalSaldo')">&times;</span>
+                <h2>Consulta de Saldo</h2>
+                <div class="pokeball-divider"></div>
+                <div class="modal-body">
+                    <div class="balance-display">
+                        <p class="balance-label">Saldo Actual:</p>
+                        <p class="balance-amount" id="balanceAmount">$100.00</p>
+                        <p class="account-info">Cuenta: 1234-5678-9012</p>
+                    </div>
+                    <button class="btn-confirmar balance" onclick="cerrarModal('modalSaldo')">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="dashboard-footer">
+            <button class="logout-button">Cerrar Sesión</button>
+        </footer>
+    </div>
+
+    <script>
+        // Simulación de saldo inicial
+        let saldoActual = 100.00;
+
+        function abrirDeposito() {
+            document.getElementById('modalDeposito').style.display = 'flex';
+        }
+
+        function abrirRetiro() {
+            document.getElementById('modalRetiro').style.display = 'flex';
+        }
+
+        function cerrarModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function ejecutarDeposito() {
+            const monto = parseFloat(document.getElementById('inputDeposito').value);
+            if (monto > 0) {
+                saldoActual += monto;
+                swal("¡Éxito!", `Has depositado $${monto.toFixed(2)}. Nuevo saldo: $${saldoActual.toFixed(2)}`, "success");
+                cerrarModal('modalDeposito');
+                document.getElementById('inputDeposito').value = '';
+            } else {
+                swal("Error", "Por favor ingrese un monto válido.", "error");
+            }
+        }
+
+        function ejecutarRetiro() {
+            const monto = parseFloat(document.getElementById('inputRetiro').value);
+            if (monto > saldoActual) {
+                swal("Saldo Insuficiente", `No puedes retirar $${monto}. Tu saldo es de $${saldoActual}`, "warning");
+            } else if (monto > 0) {
+                saldoActual -= monto;
+                swal("Retiro Exitoso", `Retiraste $${monto.toFixed(2)}. Saldo restante: $${saldoActual.toFixed(2)}`, "success");
+                cerrarModal('modalRetiro');
+                document.getElementById('inputRetiro').value = '';
+            } else {
+                swal("Error", "Monto no válido.", "error");
+            }
+        }
+
+        function consultarSaldo() {
+            document.getElementById('balanceAmount').textContent = `$${saldoActual.toFixed(2)}`;
+            document.getElementById('modalSaldo').style.display = 'flex';
+        }
+    </script>
+
+    <script src="JS/navigation.js"></script>
+
+</body>
+</html>
