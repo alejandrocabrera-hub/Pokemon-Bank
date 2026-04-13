@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfica</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h2>Gráfica de Movimientos</h2>
+
+<canvas id="grafica"></canvas>
+
+<script>
+
+// 🔍 VERIFICAR DATOS
+let datos = JSON.parse(localStorage.getItem('transacciones'));
+
+console.log("DATOS:", datos);
+
+// SI NO HAY DATOS
+if (!datos || datos.length === 0) {
+    alert("No hay datos. Haz un depósito primero.");
+}
+
+// PROCESAR DATOS
+let labels = datos.map(t => t.tipo);
+let valores = datos.map(t => t.monto);
+
+// CREAR GRÁFICA
+new Chart(document.getElementById('grafica'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Movimientos',
+            data: valores,
+            borderWidth: 1
+        }]
+    }
+});
+
+</script>
+
+</body>
+</html>
