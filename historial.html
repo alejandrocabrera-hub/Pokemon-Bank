@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Bank - Historial</title>
+    <!-- Fuente Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- SweetAlert para feedback visual -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+        <!-- Header idéntico al Dashboard -->
+        <header class="dashboard-header">
+            <div class="user-info">
+                <h1 class="user-name">Juan Pokemon</h1>
+                <p class="account-number">Historial de Transacciones</p>
+            </div>
+        </header>
+
+        <!-- Contenido principal -->
+        <main class="historial-main">
+            <div class="tabla-container">
+                <table class="tabla-transacciones">
+                    <thead>
+                        <tr>
+                            <th>TIPO</th>
+                            <th>MONTO</th>
+                            <th>FECHA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-historial">
+                        <!-- Las transacciones se cargarán mediante historial.js -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="historial-acciones">
+                <button class="logout-button btn-reporte" onclick="descargarPDF()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    Descargar PDF
+                </button>
+                <button class="logout-button" style="background-color: #555;" onclick="regresar()">
+                    Regresar
+                </button>
+            </div>
+        </main>
+
+        <footer class="dashboard-footer">
+            <p style="font-size: 12px; color: #888;">&copy; 2026 Pokémon Bank - Sección Historial</p>
+        </footer>
+    </div>
+
+    <!-- LIBRERÍAS Y SCRIPTS -->
+
+    <!-- Librería jsPDF vía CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Opción Fallback Local (Comentada) 
+    <script src="lib/jspdf.min.js"></script>
+    -->
+
+    <!-- Lógica del historial -->
+    <script src="JS/historial.js"></script>
+
+</body>
+
+</html>

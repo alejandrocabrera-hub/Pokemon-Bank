@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Bank - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+
+    <div class="formulario">
+        <h1>Pokémon Bank</h1>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="password" id="password" name="pin" maxlength="4" required pattern="\d*" inputmode="numeric">
+                <label>Ingrese su PIN (4 dígitos)</label>
+                <img src="IMG/pokebolacerrada.png" class="toggle-password" id="toggleIcon" onclick="togglePassword()" alt="Oculto">
+            </div>
+
+            <div id="error-message" style="color: #ff1c1c; font-size: 12px; height: 20px; margin-bottom: 10px; text-align: center; font-weight: 500;"></div>
+
+            <a href="#" class="recordar">¿Olvidó su PIN?</a>
+
+            <input type="submit" value="Acceder al Cajero">
+
+            <div class="registrarse">
+                ¿No eres cliente? <a href="#">Solicitar cuenta</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="JS/login.js"></script>
+</body>
+</html>
